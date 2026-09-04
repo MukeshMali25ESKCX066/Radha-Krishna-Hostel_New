@@ -1,0 +1,43 @@
+from flask import render_template,request,redirect
+
+from app import app,db,bcrypt
+
+from models.student import Student
+
+@app.route("/register",methods=["GET","POST"])
+
+def register():
+
+    if request.method=="POST":
+
+        hashed=bcrypt.generate_password_hash(
+
+        request.form["password"]
+
+        ).decode("utf-8")
+
+        student=Student(
+
+        full_name=request.form["name"],
+
+        email=request.form["email"],
+
+        phone=request.form["phone"],
+
+        hostel_name=request.form["hostel"],
+
+        block_name=request.form["block"],
+
+        room_number=request.form["room"],
+
+        password=hashed
+
+        )
+
+        db.session.add(student)
+
+        db.session.commit()
+
+        return redirect("/login")
+
+    return render_template("register.html")

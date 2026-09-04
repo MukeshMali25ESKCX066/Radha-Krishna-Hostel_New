@@ -1,0 +1,5 @@
+Hostel Fee Receipt
+Student ID: 34
+Amount: ₹114000.0
+Date: 23 Jul 2026
+Status: Paid
