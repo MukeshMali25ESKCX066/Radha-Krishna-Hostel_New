@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Radha Krishan Hostel Website
 
 Next.js starter website for Radha Krishan Hostel, Jaipur.
@@ -25,3 +26,6 @@ python app.py
 ```
 
 For SMTP providers using SSL on port 465, also set `$env:SMTP_USE_SSL = "1"`.
+=======
+# Radha-Krishna-Hostel_New
+>>>>>>> 2104a2da62eb55610275fd87a715049f18d8c1bd
