@@ -55,20 +55,18 @@ STUDENT_EMAIL_VERIFICATION_ENABLED = os.environ.get("STUDENT_EMAIL_VERIFICATION_
 def get_db_connection():
     import mysql.connector
 
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-    )
-    connection.cursor().execute("CREATE DATABASE IF NOT EXISTS hostel_tracker")
-    connection.commit()
-    connection.close()
+    db_host = os.environ.get("MYSQLHOST", "localhost")
+    db_port = int(os.environ.get("MYSQLPORT", 3306))
+    db_user = os.environ.get("MYSQLUSER", "root")
+    db_password = os.environ.get("MYSQLPASSWORD", "")
+    db_name = os.environ.get("MYSQLDATABASE", "hostel_tracker")
 
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="hostel_tracker",
+        host=db_host,
+        port=db_port,
+        user=db_user,
+        password=db_password,
+        database=db_name,
     )
 
 
@@ -3039,6 +3037,7 @@ def admin_download_all_data():
                 output = io.StringIO()
                 if rows:
                     columns = list(rows[0].keys())
+
                 else:
                     columns = []
                 writer = csv.writer(output)
