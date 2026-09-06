@@ -16,6 +16,8 @@
 
 <h2>Student Registration</h2>
 
+{% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+
 <form method="POST">
 
 <div class="alert alert-info">
@@ -34,27 +36,34 @@ placeholder="Full Name">
 <input
 class="form-control mb-3"
 name="email"
-placeholder="Email">
+placeholder="Email"
+type="email"
+required>
 
 <input
 class="form-control mb-3"
 name="phone"
 placeholder="Phone">
 
-<input
-class="form-control mb-3"
-name="hostel"
-placeholder="Hostel Name">
+<select class="form-select mb-3" name="hostel" required>
+    <option value="" selected disabled>Select Hostel</option>
+    <option value="RKH">RKH</option>
+</select>
 
-<input
-class="form-control mb-3"
-name="block"
-placeholder="Block">
+<select class="form-select mb-3" id="floorSelect" name="block" required>
+    <option value="" selected disabled>Select Hostel Floor</option>
+    <option value="Basement">Basement</option>
+    <option value="1st Floor">1st Floor</option>
+    <option value="2nd Floor">2nd Floor</option>
+    <option value="3rd Floor">3rd Floor</option>
+</select>
 
-<input
-class="form-control mb-3"
-name="room"
-placeholder="Room Number">
+<select class="form-select mb-3" id="roomSelect" name="room" required>
+    <option value="" selected disabled>Select Available Room</option>
+    {% for room in rooms %}
+    <option value="{{ room.room }}" data-floor="{{ room.block }}">{{ room.block }} - {{ room.room }} ({{ room.capacity - room.occupants }} bed available)</option>
+    {% endfor %}
+</select>
 
 <input
 type="password"
@@ -69,9 +78,21 @@ Register
 
 </button>
 
+<a href="/student-login" class="btn btn-secondary">Student Login</a>
+
 </form>
 
 </div>
+<script>
+    const floorSelect = document.getElementById('floorSelect');
+    const roomSelect = document.getElementById('roomSelect');
+    floorSelect.addEventListener('change', () => {
+        roomSelect.value = '';
+        Array.from(roomSelect.options).forEach((option) => {
+            option.hidden = option.dataset.floor && option.dataset.floor !== floorSelect.value;
+        });
+    });
+</script>
 
 </body>
 

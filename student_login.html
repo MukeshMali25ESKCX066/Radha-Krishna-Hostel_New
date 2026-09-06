@@ -7,6 +7,7 @@
 <body>
 <div class="container mt-5">
     <h2>Student Login</h2>
+    {% if request.args.get('verified') %}<div class="alert alert-success">Email verified. You can now sign in.</div>{% endif %}
     {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
     {% endif %}

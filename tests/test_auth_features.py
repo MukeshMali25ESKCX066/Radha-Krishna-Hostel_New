@@ -137,6 +137,48 @@ class AuthFeatureTests(unittest.TestCase):
         self.assertIn("attendance", context)
         self.assertIn("profile_photo", context)
 
+    def test_student_dashboard_context_uses_live_notifications(self):
+        fake_mysql_module = types.ModuleType("mysql")
+        fake_connector_module = types.ModuleType("mysql.connector")
+
+        class FakeCursor:
+            def execute(self, *args, **kwargs):
+                return None
+
+            def close(self):
+                return None
+
+        class FakeConnection:
+            def cursor(self, dictionary=False):
+                return FakeCursor()
+
+            def commit(self):
+                return None
+
+            def close(self):
+                return None
+
+        def fake_connect(**kwargs):
+            return FakeConnection()
+
+        fake_connector_module.connect = fake_connect
+        fake_mysql_module.connector = fake_connector_module
+        sys.modules["mysql"] = fake_mysql_module
+        sys.modules["mysql.connector"] = fake_connector_module
+
+        sys.modules.pop("app", None)
+        app_module = importlib.import_module("app")
+
+        live_notifications = [{
+            "title": "Hostel notice",
+            "message": "Room allocation update",
+            "image_url": "/uploads/notice.png",
+            "created_at": "2026-09-05 10:00:00",
+        }]
+
+        context = app_module.build_student_dashboard_context({"id": 7, "name": "Asha"}, notifications=live_notifications)
+        self.assertEqual(context["notifications"], live_notifications)
+
     def test_send_otp_email_uses_smtp_configuration(self):
         fake_mysql_module = types.ModuleType("mysql")
         fake_connector_module = types.ModuleType("mysql.connector")

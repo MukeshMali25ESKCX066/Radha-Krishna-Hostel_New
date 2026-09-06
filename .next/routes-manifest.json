@@ -1,0 +1,184 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [
+      {
+        "source": "/api/rooms",
+        "destination": "http://127.0.0.1:5000/api/rooms",
+        "regex": "^/api/rooms(?:/)?$"
+      },
+      {
+        "source": "/login",
+        "destination": "http://127.0.0.1:5000/login",
+        "regex": "^/login(?:/)?$"
+      },
+      {
+        "source": "/student-login",
+        "destination": "http://127.0.0.1:5000/student-login",
+        "regex": "^/student-login(?:/)?$"
+      },
+      {
+        "source": "/admin-login",
+        "destination": "http://127.0.0.1:5000/admin-login",
+        "regex": "^/admin-login(?:/)?$"
+      },
+      {
+        "source": "/register",
+        "destination": "http://127.0.0.1:5000/register",
+        "regex": "^/register(?:/)?$"
+      },
+      {
+        "source": "/verify-email",
+        "destination": "http://127.0.0.1:5000/verify-email",
+        "regex": "^/verify-email(?:/)?$"
+      },
+      {
+        "source": "/admin-2fa",
+        "destination": "http://127.0.0.1:5000/admin-2fa",
+        "regex": "^/admin-2fa(?:/)?$"
+      },
+      {
+        "source": "/withdraw-application",
+        "destination": "http://127.0.0.1:5000/withdraw-application",
+        "regex": "^/withdraw-application(?:/)?$"
+      },
+      {
+        "source": "/student-pending",
+        "destination": "http://127.0.0.1:5000/student-pending",
+        "regex": "^/student-pending(?:/)?$"
+      },
+      {
+        "source": "/student-approved",
+        "destination": "http://127.0.0.1:5000/student-approved",
+        "regex": "^/student-approved(?:/)?$"
+      },
+      {
+        "source": "/student-dashboard",
+        "destination": "http://127.0.0.1:5000/student-dashboard",
+        "regex": "^/student-dashboard(?:/)?$"
+      },
+      {
+        "source": "/student-complaint",
+        "destination": "http://127.0.0.1:5000/student-complaint",
+        "regex": "^/student-complaint(?:/)?$"
+      },
+      {
+        "source": "/mark-attendance",
+        "destination": "http://127.0.0.1:5000/mark-attendance",
+        "regex": "^/mark-attendance(?:/)?$"
+      },
+      {
+        "source": "/edit-profile",
+        "destination": "http://127.0.0.1:5000/edit-profile",
+        "regex": "^/edit-profile(?:/)?$"
+      },
+      {
+        "source": "/upload-profile-photo",
+        "destination": "http://127.0.0.1:5000/upload-profile-photo",
+        "regex": "^/upload-profile-photo(?:/)?$"
+      },
+      {
+        "source": "/upload-college-id",
+        "destination": "http://127.0.0.1:5000/upload-college-id",
+        "regex": "^/upload-college-id(?:/)?$"
+      },
+      {
+        "source": "/download-fee-receipt",
+        "destination": "http://127.0.0.1:5000/download-fee-receipt",
+        "regex": "^/download-fee-receipt(?:/)?$"
+      },
+      {
+        "source": "/download-college-id-card",
+        "destination": "http://127.0.0.1:5000/download-college-id-card",
+        "regex": "^/download-college-id-card(?:/)?$"
+      },
+      {
+        "source": "/generate-laundry-token",
+        "destination": "http://127.0.0.1:5000/generate-laundry-token",
+        "regex": "^/generate-laundry-token(?:/)?$"
+      },
+      {
+        "source": "/forgot-password",
+        "destination": "http://127.0.0.1:5000/forgot-password",
+        "regex": "^/forgot-password(?:/)?$"
+      },
+      {
+        "source": "/reset-password",
+        "destination": "http://127.0.0.1:5000/reset-password",
+        "regex": "^/reset-password(?:/)?$"
+      },
+      {
+        "source": "/logout",
+        "destination": "http://127.0.0.1:5000/logout",
+        "regex": "^/logout(?:/)?$"
+      },
+      {
+        "source": "/admin-dashboard",
+        "destination": "http://127.0.0.1:5000/admin-dashboard",
+        "regex": "^/admin-dashboard(?:/)?$"
+      },
+      {
+        "source": "/admin-action",
+        "destination": "http://127.0.0.1:5000/admin-action",
+        "regex": "^/admin-action(?:/)?$"
+      }
+    ],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
