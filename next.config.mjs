@@ -50,7 +50,7 @@ const nextConfig = {
   async rewrites() {
     return trackerRoutes.map((route) => ({
       source: route,
-      destination: `https://radha-krishna-hostel-new.onrender.com/`,
+  destination: `https://radha-krishna-hostel-new.onrender.com${route}`,
     }));
   },
 };
