@@ -1662,14 +1662,7 @@ def laundry_pickup():
 def register():
     if request.method == "POST":
         try:
-            import mysql.connector
-
-            connection = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="",
-                database="hostel_tracker",
-            )
+            connection = get_db_connection()
             cursor = connection.cursor()
             cursor.execute(
                 """
@@ -2289,7 +2282,7 @@ def upload_profile_photo():
     try:
         import mysql.connector
 
-        connection = mysql.connector.connect(host='localhost', user='root', password='', database='hostel_tracker')
+        connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
         cursor.execute("SELECT photo_url FROM students WHERE id=%s", (session.get('user_id'),))
         existing_student = cursor.fetchone()
@@ -2308,7 +2301,7 @@ def upload_profile_photo():
                 photo_path = os.path.join(upload_dir, f"student_{session.get('user_id')}_{filename}")
                 photo.save(photo_path)
                 relative_path = f"/uploads/student_{session.get('user_id')}_{filename}"
-                connection = mysql.connector.connect(host='localhost', user='root', password='', database='hostel_tracker')
+                connection = get_db_connection()
                 cursor = connection.cursor()
                 cursor.execute("UPDATE students SET photo_url=%s WHERE id=%s", (relative_path, session.get('user_id')))
                 connection.commit()
@@ -2339,7 +2332,7 @@ def upload_college_id():
                 save_path = os.path.join(upload_dir, f"college_id_{session.get('user_id')}_{filename}")
                 uploaded_file.save(save_path)
                 relative_path = f"/uploads/college_id_{session.get('user_id')}_{filename}"
-                connection = mysql.connector.connect(host='localhost', user='root', password='', database='hostel_tracker')
+                connection = get_db_connection()
                 cursor = connection.cursor()
                 cursor.execute("UPDATE students SET college_id_url=%s WHERE id=%s", (relative_path, session.get('user_id')))
                 connection.commit()
